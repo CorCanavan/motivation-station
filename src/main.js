@@ -2,6 +2,7 @@
 var posterImg = document.querySelector(".poster-img");
 var posterTitle = document.querySelector(".poster-title");
 var posterQuote = document.querySelector(".poster-quote");
+var showRandom = document.querySelector(".show-random");
 // we've provided you with some data to work with 👇
 var images = [
   "./assets/bees.jpg",
@@ -105,6 +106,9 @@ var currentPoster;
 
 // event listeners go here 👇
 window.addEventListener('load', () => {
+  loadRandomPoster();
+})
+showRandom.addEventListener("click", () => {
   loadRandomPoster();
 })
 
