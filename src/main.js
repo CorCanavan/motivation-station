@@ -1,5 +1,7 @@
 // query selector variables go here 👇
-var posterImg = document.querySelector('.poster-img');
+var posterImg = document.querySelector(".poster-img");
+var posterTitle = document.querySelector(".poster-title");
+var posterQuote = document.querySelector(".poster-quote");
 // we've provided you with some data to work with 👇
 var images = [
   "./assets/bees.jpg",
@@ -108,7 +110,9 @@ window.addEventListener('load', () => {
 
 // functions and event handlers go here 👇
 function loadRandomPoster() {
-  posterImg.src = images[getRandomIndex(images)]
+  posterImg.src = images[getRandomIndex(images)];
+  posterTitle.innerHTML = titles[getRandomIndex(titles)];
+  posterQuote.innerHTML = quotes[getRandomIndex(quotes)];
 }
 
 
