@@ -3,6 +3,10 @@ var posterImg = document.querySelector(".poster-img");
 var posterTitle = document.querySelector(".poster-title");
 var posterQuote = document.querySelector(".poster-quote");
 var showRandom = document.querySelector(".show-random");
+var showForm = document.querySelector(".show-form");
+var posterForm = document.querySelector(".poster-form");
+var mainPoster = document.querySelector(".main-poster");
+var showMain = document.querySelector(".show-main");
 // we've provided you with some data to work with 👇
 var images = [
   "./assets/bees.jpg",
@@ -110,6 +114,16 @@ window.addEventListener('load', () => {
 })
 showRandom.addEventListener("click", () => {
   loadRandomPoster();
+})
+
+showForm.addEventListener("click", () => {
+  posterForm.classList.remove("hidden");
+  mainPoster.classList.add("hidden");
+})
+
+showMain.addEventListener("click", () => {
+  mainPoster.classList.remove("hidden");
+  posterForm.classList.add("hidden");
 })
 
 // functions and event handlers go here 👇
