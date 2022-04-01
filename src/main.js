@@ -148,7 +148,6 @@ makePosterButton.addEventListener("click", () => {
   toggleToMain();
 })
 
-
 // functions and event handlers go here 👇
 function loadRandomPoster() {
   posterImg.src = images[getRandomIndex(images)];
