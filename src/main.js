@@ -2,7 +2,8 @@
 var posterImg = document.querySelector(".poster-img");
 var posterTitle = document.querySelector(".poster-title");
 var posterQuote = document.querySelector(".poster-quote");
-// Buttons below
+
+// Buttons below 👇
 var showRandomButton = document.querySelector(".show-random");
 var showFormButton = document.querySelector(".show-form");
 var showMainButton = document.querySelector(".show-main");
@@ -10,11 +11,12 @@ var showSavedButton = document.querySelector(".show-saved");
 var backToMainButton = document.querySelector(".back-to-main");
 var makePosterButton = document.querySelector(".make-poster");
 
-// Sections below
+// Sections below 👇
 var posterForm = document.querySelector(".poster-form");
 var mainPoster = document.querySelector(".main-poster");
 var savedPostersPage = document.querySelector(".saved-posters");
-// Poster inputs
+
+// Poster inputs 👇
 var posterImgUrl = document.querySelector("#poster-image-url")
 var motivationalTitle = document.querySelector("#poster-title");
 var motivationalQuote = document.querySelector("#poster-quote");
@@ -120,7 +122,6 @@ var quotes = [
 var savedPosters = [];
 var currentPoster;
 
-
 // event listeners go here 👇
 window.addEventListener('load', () => {
   loadRandomPoster();
@@ -132,20 +133,15 @@ showFormButton.addEventListener("click", toggleToMain)
 
 showMainButton.addEventListener("click",toggleToMain)
 
-showSavedButton.addEventListener("click", () => {
-  mainPoster.classList.add("hidden");
-  savedPostersPage.classList.remove("hidden");
-})
+showSavedButton.addEventListener("click", toggleToHome)
 
-backToMainButton.addEventListener("click", () => {
-  mainPoster.classList.remove("hidden");
-  savedPostersPage.classList.add("hidden");
-})
+backToMainButton.addEventListener("click", toggleToHome)
 
 makePosterButton.addEventListener("click", () => {
   event.preventDefault();
   generatePoster();
   toggleToMain();
+  storePosterInfo();
 })
 
 // functions and event handlers go here 👇
@@ -154,7 +150,8 @@ function loadRandomPoster() {
   posterTitle.innerHTML = titles[getRandomIndex(titles)];
   posterQuote.innerHTML = quotes[getRandomIndex(quotes)];
 }
-function generatePoster(){
+
+function generatePoster() {
   var myPoster = new Poster(posterImgUrl.value, motivationalTitle.value, motivationalQuote.value);
   savedPosters.push(myPoster)
   posterImg.src = myPoster.imageURL
@@ -165,6 +162,17 @@ function generatePoster(){
 function toggleToMain() {
   mainPoster.classList.toggle("hidden");
   posterForm.classList.toggle("hidden");
+}
+
+function toggleToHome() {
+  mainPoster.classList.toggle("hidden");
+  savedPostersPage.classList.toggle("hidden");
+}
+
+function storePosterInfo() {
+  images.push(posterImgUrl.value);
+  titles.push(motivationalTitle.value);
+  quotes.push(motivationalQuote.value);
 }
 
 // (we've provided one for you to get you started)!
