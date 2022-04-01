@@ -3,15 +3,21 @@ var posterImg = document.querySelector(".poster-img");
 var posterTitle = document.querySelector(".poster-title");
 var posterQuote = document.querySelector(".poster-quote");
 // Buttons below
-var showRandom = document.querySelector(".show-random");
-var showForm = document.querySelector(".show-form");
-var showMain = document.querySelector(".show-main");
-var showSaved = document.querySelector(".show-saved");
-var backToMain = document.querySelector(".back-to-main");
+var showRandomButton = document.querySelector(".show-random");
+var showFormButton = document.querySelector(".show-form");
+var showMainButton = document.querySelector(".show-main");
+var showSavedButton = document.querySelector(".show-saved");
+var backToMainButton = document.querySelector(".back-to-main");
+var makePosterButton = document.querySelector(".make-poster");
+
 // Sections below
 var posterForm = document.querySelector(".poster-form");
 var mainPoster = document.querySelector(".main-poster");
 var savedPostersPage = document.querySelector(".saved-posters");
+// Poster inputs
+var posterImgUrl = document.querySelector("#poster-image-url")
+var motivationalTitle = document.querySelector("#poster-title");
+var motivationalQuote = document.querySelector("#poster-quote");
 
 // we've provided you with some data to work with 👇
 var images = [
@@ -114,40 +120,52 @@ var quotes = [
 var savedPosters = [];
 var currentPoster;
 
+
 // event listeners go here 👇
 window.addEventListener('load', () => {
   loadRandomPoster();
 })
-showRandom.addEventListener("click", () => {
-  loadRandomPoster();
-})
 
-showForm.addEventListener("click", () => {
-  posterForm.classList.remove("hidden");
-  mainPoster.classList.add("hidden");
-})
+showRandomButton.addEventListener("click",loadRandomPoster)
 
-showMain.addEventListener("click", () => {
-  mainPoster.classList.remove("hidden");
-  posterForm.classList.add("hidden");
-})
+showFormButton.addEventListener("click", toggleToMain)
 
-showSaved.addEventListener("click", () => {
+showMainButton.addEventListener("click",toggleToMain)
+
+showSavedButton.addEventListener("click", () => {
   mainPoster.classList.add("hidden");
   savedPostersPage.classList.remove("hidden");
 })
 
-backToMain.addEventListener("click", () => {
+backToMainButton.addEventListener("click", () => {
   mainPoster.classList.remove("hidden");
   savedPostersPage.classList.add("hidden");
 })
+
+makePosterButton.addEventListener("click", () => {
+  event.preventDefault();
+  generatePoster();
+  toggleToMain();
+})
+
 // functions and event handlers go here 👇
 function loadRandomPoster() {
   posterImg.src = images[getRandomIndex(images)];
   posterTitle.innerHTML = titles[getRandomIndex(titles)];
   posterQuote.innerHTML = quotes[getRandomIndex(quotes)];
 }
+function generatePoster(){
+  var myPoster = new Poster(posterImgUrl.value, motivationalTitle.value, motivationalQuote.value);
+  savedPosters.push(myPoster)
+  posterImg.src = myPoster.imageURL
+  posterTitle.innerHTML = myPoster.title
+  posterQuote.innerHTML = myPoster.quote
+}
 
+function toggleToMain() {
+  mainPoster.classList.toggle("hidden");
+  posterForm.classList.toggle("hidden");
+}
 
 // (we've provided one for you to get you started)!
 function getRandomIndex(array) {
