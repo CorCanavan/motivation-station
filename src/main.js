@@ -10,6 +10,7 @@ var showMainButton = document.querySelector(".show-main");
 var showSavedButton = document.querySelector(".show-saved");
 var backToMainButton = document.querySelector(".back-to-main");
 var makePosterButton = document.querySelector(".make-poster");
+var savePosterButton = document.querySelector(".save-poster");
 
 // Sections below 👇
 var posterForm = document.querySelector(".poster-form");
@@ -127,11 +128,13 @@ window.addEventListener('load', () => {
   loadRandomPoster();
 })
 
-showRandomButton.addEventListener("click",loadRandomPoster)
+savePosterButton.addEventListener("click", saveMainPoster)
+
+showRandomButton.addEventListener("click", loadRandomPoster)
 
 showFormButton.addEventListener("click", toggleToMain)
 
-showMainButton.addEventListener("click",toggleToMain)
+showMainButton.addEventListener("click", toggleToMain)
 
 showSavedButton.addEventListener("click", toggleToHome)
 
@@ -145,6 +148,16 @@ makePosterButton.addEventListener("click", () => {
 })
 
 // functions and event handlers go here 👇
+function saveMainPoster() {
+  var myPoster = new Poster(posterImg.src, posterTitle.innerHTML, posterQuote.innerHTML);
+    for(var i = 0; i < savedPosters.length; i++ ) {
+      if ( savedPosters[i].url == myPoster.url && savedPosters[i].title == myPoster.title && savedPosters[i].quote == myPoster.quote) {
+        return
+      }
+    }
+    savedPosters.push(myPoster);
+}
+
 function loadRandomPoster() {
   posterImg.src = images[getRandomIndex(images)];
   posterTitle.innerHTML = titles[getRandomIndex(titles)];
