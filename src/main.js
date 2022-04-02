@@ -147,11 +147,22 @@ makePosterButton.addEventListener("click", () => {
   toggleToMain();
 })
 
+savedPostersGrid.addEventListener("dblclick", () => {
+  deleteSavedPoster();
+})
+
 //double click on poster,
 // event.target the id & remove from savedPosters array.
 // event.target remove html element for that mini-poster,
 
 // functions and event handlers go here 👇
+function deleteSavedPoster() {
+  var miniPoster = event.target.closest(".mini-poster");
+  var posterIndex = savedPosters.findIndex((poster) => {poster.id === miniPoster.id});
+  savedPosters.splice(posterIndex, 1);
+  return miniPoster.remove();
+}
+
 function makePoster(){
   var miniPoster =
   `<article id="${currentPoster.id}" class="mini-poster">
@@ -166,7 +177,9 @@ function makePoster(){
 function saveMainPoster() {
   currentPoster = new Poster(posterImg.src, posterTitle.innerHTML, posterQuote.innerHTML);
     for(var i = 0; i < savedPosters.length; i++ ) {
-      if (savedPosters[i].url == currentPoster.url && savedPosters[i].title == currentPoster.title && savedPosters[i].quote == currentPoster.quote) {
+      if (savedPosters[i].url == currentPoster.url &&
+        savedPosters[i].title == currentPoster.title &&
+        savedPosters[i].quote == currentPoster.quote) {
         var existingPoster = savedPosters[i]
       }
     }
