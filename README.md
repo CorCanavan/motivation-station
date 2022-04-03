@@ -30,7 +30,7 @@ A boilerplate repo.
 - Additionally, if you want to remove a poster from your Saved Posters Page, you can delete it!
 
 ## Illustrations
-
+![Demo](illustration.mov)
 ## Deployed Page
 
 Visit our published Hang In There page [here](https://corcanavan.github.io/motivation-station/)
@@ -57,7 +57,7 @@ Visit our published Hang In There page [here](https://corcanavan.github.io/motiv
   - [Trish Fox-Collis](https://github.com/tfoxcollis)
 
 ## Lessons Learned
- - Being able to see a visual representation of our code in the browser was really helpful in beginning to understand the connection between HTML, CSS and JavaScript, as well as how the DOM works when it comes to targeting and manipulating elements. This also lent itself to helping us figure out where something was not working as we expected in the codebase based on what was displaying or not displaying.
+ - Being able to see a visual representation of our code in the browser was really helpful in the beginning to understand the connection between HTML, CSS and JavaScript, as well as how the DOM works when it comes to targeting and manipulating elements. This also lent itself to helping us figure out where something was not working as we expected in the codebase based on what was displaying or not displaying.  Refactoring is hard, but it is a must.  Creating helper functions to dry out code makes the project readable and cleaner. Who knew clicking a button was so complicated?!
 
 ## Project Spec
   - The project spec & rubric can be found [here](https://frontend.turing.edu/projects/module-1/hang-in-there-v2.html)
