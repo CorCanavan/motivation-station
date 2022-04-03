@@ -30,9 +30,7 @@ A boilerplate repo.
 - Additionally, if you want to remove a poster from your Saved Posters Page, you can delete it!
 
 ## Illustrations
-<video width="320" controls>
-  <source source="illustration.mov" type="video/mov">
- </video>
+![Demo](./illustration.gif)
 ## Deployed Page
 
 Visit our published Hang In There page [here](https://corcanavan.github.io/motivation-station/)
