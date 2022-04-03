@@ -1,9 +1,9 @@
-// query selector variables go here 👇
+// query selector variables go here👇
 var posterImg = document.querySelector(".poster-img");
 var posterTitle = document.querySelector(".poster-title");
 var posterQuote = document.querySelector(".poster-quote");
 
-// Buttons below 👇
+// Buttons below👇
 var showRandomButton = document.querySelector(".show-random");
 var showFormButton = document.querySelector(".show-form");
 var showMainButton = document.querySelector(".show-main");
@@ -12,18 +12,18 @@ var backToMainButton = document.querySelector(".back-to-main");
 var makePosterButton = document.querySelector(".make-poster");
 var savePosterButton = document.querySelector(".save-poster");
 
-// Sections below 👇
+// Sections below👇
 var posterForm = document.querySelector(".poster-form");
 var mainPoster = document.querySelector(".main-poster");
 var savedPostersPage = document.querySelector(".saved-posters");
 var savedPostersGrid = document.querySelector('.saved-posters-grid');
 
-// Poster inputs 👇
+// Poster inputs👇
 var posterImgUrl = document.querySelector("#poster-image-url")
 var motivationalTitle = document.querySelector("#poster-title");
 var motivationalQuote = document.querySelector("#poster-quote");
 
-// we've provided you with some data to work with 👇
+// we've provided you with some data to work with👇
 var images = [
   "./assets/bees.jpg",
   "./assets/bridge.jpg",
@@ -124,7 +124,7 @@ var quotes = [
 var savedPosters = [];
 var currentPoster;
 
-// event listeners go here 👇
+// event listeners go here👇
 window.addEventListener('load', loadRandomPoster)
 
 showRandomButton.addEventListener("click", loadRandomPoster)
@@ -139,23 +139,16 @@ backToMainButton.addEventListener("click", toggleToHome)
 
 savePosterButton.addEventListener("click", saveMainPoster)
 
-
 makePosterButton.addEventListener("click", () => {
   event.preventDefault();
-  generatePoster();
+  generatePoster(posterImgUrl.value, motivationalTitle.value, motivationalQuote.value);
   storePosterInfo();
   toggleToMain();
 })
 
-savedPostersGrid.addEventListener("dblclick", () => {
-  deleteSavedPoster();
-})
+savedPostersGrid.addEventListener("dblclick", deleteSavedPoster)
 
-//double click on poster,
-// event.target the id & remove from savedPosters array.
-// event.target remove html element for that mini-poster,
-
-// functions and event handlers go here 👇
+// functions and event handlers go here👇
 function deleteSavedPoster() {
   var miniPoster = event.target.closest(".mini-poster");
   var posterIndex = savedPosters.findIndex((poster) => {poster.id === miniPoster.id});
@@ -175,28 +168,30 @@ function makePoster(){
 }
 
 function saveMainPoster() {
-  currentPoster = new Poster(posterImg.src, posterTitle.innerHTML, posterQuote.innerHTML);
-    for(var i = 0; i < savedPosters.length; i++ ) {
-      if (savedPosters[i].url == currentPoster.url &&
-        savedPosters[i].title == currentPoster.title &&
-        savedPosters[i].quote == currentPoster.quote) {
-        var existingPoster = savedPosters[i]
-      }
-    }
-    if (!existingPoster) {
-      savedPosters.push(currentPoster);
-      makePoster();
-    }
+  if (!existingPoster()) {
+    savedPosters.push(currentPoster);
+    makePoster();
+  }
+}
+
+function existingPoster(){
+  return savedPosters.find((poster) => {
+    poster.imageURL === currentPoster.imageURL &&
+    poster.title === currentPoster.title &&
+    poster.quote === currentPoster.quote
+  })
 }
 
 function loadRandomPoster() {
-  posterImg.src = images[getRandomIndex(images)];
-  posterTitle.innerHTML = titles[getRandomIndex(titles)];
-  posterQuote.innerHTML = quotes[getRandomIndex(quotes)];
+  generatePoster(
+    images[getRandomIndex(images)],
+    titles[getRandomIndex(titles)],
+    quotes[getRandomIndex(quotes)]
+  )
 }
 
-function generatePoster() {
-  currentPoster = new Poster(posterImgUrl.value, motivationalTitle.value, motivationalQuote.value);
+function generatePoster(url, title, quote) {
+  currentPoster = new Poster(url, title, quote);
   posterImg.src = currentPoster.imageURL
   posterTitle.innerHTML = currentPoster.title
   posterQuote.innerHTML = currentPoster.quote
