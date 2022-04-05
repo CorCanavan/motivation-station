@@ -175,11 +175,11 @@ function saveMainPoster() {
 }
 
 function existingPoster(){
-  return savedPosters.find((poster) => {
+  return savedPosters.find((poster) =>
     poster.imageURL === currentPoster.imageURL &&
     poster.title === currentPoster.title &&
     poster.quote === currentPoster.quote
-  })
+  )
 }
 
 function loadRandomPoster() {
